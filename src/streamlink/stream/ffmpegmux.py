@@ -195,13 +195,13 @@ class FFMPEGMuxer(StreamIO):
         self._cmd = [
             self.command(session),
             "-y",
+            "-re",
             "-nostats",
             "-loglevel",
             loglevel,
         ]
 
         for np in self.pipes:
-            self._cmd.extend(['-thread_queue_size', '32768'])
             if dkey:
                 self._cmd.extend(['-decryption_key', dkey])
             self._cmd.extend(["-i", str(np.path)])
