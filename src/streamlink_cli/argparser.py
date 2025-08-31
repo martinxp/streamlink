@@ -1238,6 +1238,20 @@ def build_parser():
             Example: --ffmpeg-fout "mpegts"
         """,
     )
+    
+    transport_ffmpeg.add_argument(
+        "--ffmpeg-dkey",
+        type=str,
+        metavar="DKEY",
+        help="""
+        When attempting to play DRM-protected streams, specify the decryption key to be passed to ffmpeg.
+
+        Default is none, assuming stream is not DRM protected by default.
+
+        Example: --ffmpeg-dkey "decryption:key"
+        """
+    )
+    
     transport_ffmpeg.add_argument(
         "--ffmpeg-video-transcode",
         metavar="CODEC",
