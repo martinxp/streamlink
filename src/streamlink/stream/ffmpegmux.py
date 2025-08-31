@@ -208,6 +208,8 @@ class FFMPEGMuxer(StreamIO):
         ]
 
         for np in self.pipes:
+                if dkey:
+                    self._cmd.extend(['-decryption_key', dkey])
             self._cmd.extend(["-i", str(np.path)])
 
         self._cmd.extend(["-c:v", videocodec])
@@ -220,9 +222,6 @@ class FFMPEGMuxer(StreamIO):
             self._cmd.extend(["-copyts"])
             if start_at_zero:
                 self._cmd.extend(["-start_at_zero"])
-
-        if dkey:
-            self._cmd.extend(['-decryption_key', dkey])
 
         for stream, data in metadata.items():
             for datum in data:
